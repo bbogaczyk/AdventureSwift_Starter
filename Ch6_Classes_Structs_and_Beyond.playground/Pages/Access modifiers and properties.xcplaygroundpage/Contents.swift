@@ -22,9 +22,40 @@ class Adventurer {
     var specialMove: String?
     let maxHealth: Int
     
+    
+    //Add a read-only (computed) properties and we cannot change the value
+    var healthLost: Int {
+        return maxHealth - health
+    }
+    
+    //Add static property type and cannot be overritten in subclass
+    static var maxActivePlayers = 10
+    
+    //Add overriden variable
+    class var credo: String {
+        return "Defend the helpless"
+    }
+    
+    //Add a read-write property to Adventurer
+    fileprivate var health: Int
+    
+    //public interface - backing filed
+    var Health: Int {
+        //computed property
+        get {
+            return health
+        }
+        set {
+            if newValue <= 100 {
+                health = newValue
+            }
+        }
+    }
+    
     init(name: String, maxHP: Int) {
         self.name = name
         self.maxHealth = maxHP
+        self.health = maxHP
     }
     
     convenience init(name: String) {
@@ -32,12 +63,19 @@ class Adventurer {
     }
     
     func printStats() {
-        print("Character: \(self.name), Health: \(self.maxHealth)")
+        print("Character: \(self.name), Health: \(self.health)/\(self.maxHealth)")
+        
+        
     }
 }
 
 var player1 = Adventurer(name: "Harrison", maxHP: 99)
 var player2 = Adventurer(name: "Steven")
 
+//calling the static and class property
+print("Credo: \(Adventurer.credo)")
+print("Max Active Players: \(Adventurer.maxActivePlayers)")
+
 player1.printStats()
 player2.printStats()
+

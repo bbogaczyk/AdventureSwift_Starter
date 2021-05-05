@@ -15,4 +15,40 @@
  
  */
 // Declaring a new class
+class Adventurer {
+    var name: String
+    let maxHealth: Int
+    
+    var specialMove: String?
+    
+    //create a initializers
+    init(name: String, maxHP: Int) {
+        //set the adventure properties
+        self.name = name //Define designated initializers
+        self.maxHealth = maxHP
+    }
+    
+    //Define convenience initializers
+    convenience init(name: String) {
+        //passing the parameter into to designated init
+        self.init(name: name, maxHP: 100)
+    }
+    
+    //print out the properties
+    func printStats () {
+        print("Character: \(self.name), Max Health: \(self.maxHealth)")
+    }
+}
+
+//declaare the instance of the class
+var player1 = Adventurer (name: "Harrison", maxHP: 99) //designated
+var player2 = Adventurer (name: "Steven")  //convenience
+
+//play with reference - override the first player
+var defaultPlayer = player1
+defaultPlayer.name = "Bob the Noob"
+
+player1.printStats()
+player2.printStats()
+
 
