@@ -52,9 +52,35 @@ class Adventurer {
     }
 }
 
-// Subclass
+// create Subclass and call the main class. This class will inherit all the properties from the main class so there is no neccessary to duplicate the code
+class Ranger: Adventurer {
+    //anything crated in subclass won't be accesible to the parent
+    var classAdventage: String
+    
+    //override class
+    override class var credo: String {
+        return "To the king!"
+    }
+    
+    init(name: String, advantage: String) {
+        self.classAdventage = advantage
+        
+        //pass the properties to parent class
+        super.init(name: name, maxHP: 150)
+    }
+    override func printStats() {
+        print("\(self.name): Ranger, Advantage: \(self.classAdventage)")
+    }
+    
+}
 
 
 var player1 = Adventurer(name: "Harrison", maxHP: 99)
 player1.printStats()
 Adventurer.credo
+Ranger.credo
+
+var aragorn = Ranger(name: "Aragorn", advantage: "Stealth")
+aragorn.printStats()
+
+
