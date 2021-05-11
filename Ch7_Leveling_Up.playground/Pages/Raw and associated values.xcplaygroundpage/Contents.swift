@@ -14,7 +14,34 @@
 
  */
 // Raw values
+enum NonPlayableCharacters: String {
+    case Villager = "Common, not much useful info there."
+    case Blacksmith = "One per village, will have quest information."
+    case Merchant = "No limit per village, will you coll stuff."
+}
 
+var blacksmith = NonPlayableCharacters.Blacksmith
+print(blacksmith.rawValue)
 
 // Associated values
+enum PlayerState {
+    case Alive
+    case KO (level: Int)
+    case Unknown (debugError: String)
+    
+    func evaluteCase() {
+        switch self {
+        case .Alive:
+            print("Still kicking!")
+        case .KO(let restartLevel):
+            print("Sorry, back to level \(restartLevel) for you...")
+        case .Unknown(let message):
+            print(message)
+        default:
+            print("Unknown state encountered...")
+        }
+    }
+}
 
+PlayerState.KO(level: 2).evaluteCase()
+PlayerState.Alive.evaluteCase()
